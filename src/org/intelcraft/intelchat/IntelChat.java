@@ -161,6 +161,11 @@ public class IntelChat extends JavaPlugin
 							ChatChannel channel = new ChatChannel(name, new PlayerObject(player.getDisplayName(), true, name));
 							this.channels.add(channel);
 						}
+						if(args[1].equalsIgnoreCase("join")){
+							String name = args[2];
+							ChatChannel c = getChannel(name);
+							c.join(new PlayerObject(player.getDisplayName(),false,name));
+						}
 						}
 						else if(args.length >= 3){
 							String name = args[2];

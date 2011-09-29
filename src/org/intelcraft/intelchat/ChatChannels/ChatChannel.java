@@ -27,4 +27,7 @@ public void sendMessage(String message){
 public String getName(){
 	return this.name;
 }
+public void join(PlayerObject o ){
+	this.players.add(o);
+}
 }
