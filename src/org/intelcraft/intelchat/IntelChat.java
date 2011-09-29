@@ -144,7 +144,7 @@ public class IntelChat extends JavaPlugin
 				} else if(chk(args[0], "group", "g")) { //Group Chatting
 					if(player.hasPermission("ic.chat.group"))
 					{
-						//TODO: Implement group chat
+						
 					}
 				} else if(chk(args[0], "global", "gb")) { //Global Chatting
 					if(player.hasPermission("ic.chat.global"))
