@@ -9,6 +9,19 @@
 
 package org.intelcraft.intelchat;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,15 +31,10 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
+import org.intelcraft.intelchat.ChatChannels.ChatChannel;
+import org.intelcraft.intelchat.ChatChannels.PlayerObject;
 import org.intelcraft.intelchat.listeners.playerListener;
 import org.intelcraft.intelchat.updater.UpdatePlugin;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 
 public class IntelChat extends JavaPlugin
 {
@@ -45,6 +53,9 @@ public class IntelChat extends JavaPlugin
 	public Configuration chatConfig;
 	public Configuration serverConfig;
 
+	
+	Collection<ChatChannel> channels = new ArrayList<ChatChannel>();
+	
 	public void onEnable()
 	{
 		boolean cancel = false;
@@ -144,7 +155,17 @@ public class IntelChat extends JavaPlugin
 				} else if(chk(args[0], "group", "g")) { //Group Chatting
 					if(player.hasPermission("ic.chat.group"))
 					{
-						
+						if(args.length == 3){
+						if(args[1].equalsIgnoreCase("create")){
+							String name = args[2];
+							ChatChannel channel = new ChatChannel(name, new PlayerObject(player.getDisplayName(), true, name));
+							this.channels.add(channel);
+						}
+						}
+						else if(args.length >= 3){
+							String name = args[2];
+							
+						}
 					}
 				} else if(chk(args[0], "global", "gb")) { //Global Chatting
 					if(player.hasPermission("ic.chat.global"))
@@ -306,5 +327,10 @@ public class IntelChat extends JavaPlugin
 		}
 
 		return false;
+	}
+	public ChatChannel getChannel(String name){
+		
+		//TODO 
+		return null;
 	}
 }
