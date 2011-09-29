@@ -24,5 +24,7 @@ public void sendMessage(String message){
 		p.sendMessage(ChatColor.BLACK + "[" + ChatColor.BLUE + "name " + ChatColor.BLACK +  "]" + ChatColor.WHITE  + message);
 	}
 }
-
+public String getName(){
+	return this.name;
+}
 }

@@ -164,6 +164,8 @@ public class IntelChat extends JavaPlugin
 						}
 						else if(args.length >= 3){
 							String name = args[2];
+							ChatChannel c = getChannel(name);
+							c.sendMessage(args[3]);
 							
 						}
 					}
@@ -330,7 +332,11 @@ public class IntelChat extends JavaPlugin
 	}
 	public ChatChannel getChannel(String name){
 		
-		//TODO 
+		for(ChatChannel c : this.channels){
+			if(name.equalsIgnoreCase(c.getName())){
+				return c;
+			}
+		}
 		return null;
 	}
 }
